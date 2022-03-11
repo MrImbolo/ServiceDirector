@@ -29,7 +29,7 @@ namespace ServiceDirector
             ServiceRequest request, 
             CancellationToken ct = default)
         {
-            await Task.Delay(1, ct);
+            await Task.Delay(TimeSpan.FromMilliseconds(0.001), ct);
 
             ct.ThrowIfCancellationRequested();
 
