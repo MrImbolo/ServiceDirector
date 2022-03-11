@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>ServiceDirector.Benchmark.ServiceDirectorBenchmarks-20220311-192958</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1586 (21H2)
+AMD Ryzen 7 5800H with Radeon Graphics, 1 CPU, 16 logical and 8 physical cores
+.NET SDK=6.0.101
+  [Host]     : .NET 6.0.1 (6.0.121.56705), X64 RyuJIT
+  DefaultJob : .NET 6.0.1 (6.0.121.56705), X64 RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>               Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th><th>Gen 0</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>PlainServiceExecuteAsync</td><td>35.49 ns</td><td>0.467 ns</td><td>0.437 ns</td><td>1</td><td>0.0162</td><td>136 B</td>
+</tr><tr><td>ServiceDirectorExecuteAsync</td><td>72.42 ns</td><td>0.866 ns</td><td>0.767 ns</td><td>2</td><td>0.0421</td><td>352 B</td>
+</tr></tbody></table>
+</body>
+</html>

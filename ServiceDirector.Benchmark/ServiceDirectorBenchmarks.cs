@@ -1,10 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceDirector.Benchmark
 {
@@ -13,28 +8,23 @@ namespace ServiceDirector.Benchmark
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class ServiceDirectorBenchmarks
     {
+        readonly DefaultService _service = new();
+        readonly DefaultServiceDirector _director = new DefaultServiceDirector();
+
+        readonly Func<CancellationToken, Task<ServiceRequest>> _configure = 
+            async (ct) => await Task.FromResult(new ServiceRequest { Data = "This a sample director request data" });
+        
         [Benchmark]
-        public static async Task ServiceDirectorExecuteAsync()
+        public async Task ServiceDirectorExecuteAsync()
         {
-            var service = new DefaultService();
-            var director = new DefaultServiceDirector();
-
-            ServiceRequest request2 = new() { Data = "This a sample director request data" };
-
-            _ = await director.ExecuteAsync(service, async (ct) =>
-            {
-                return await Task.FromResult(request2);
-            });
+            _ = await _director.ExecuteAsync(_service, _configure);
         }
 
 
         [Benchmark]
-        public static async Task PlainServiceExecuteAsync()
+        public async Task PlainServiceExecuteAsync()
         {
-            var service = new DefaultService();
-            ServiceRequest request1 = new() { Data = "This is a sample data" };
-
-            _ = await service.ExecuteAsync(request1);
+            _ = await _service.ExecuteAsync(new() { Data = "This is a sample data" });
         }
     }
 }
