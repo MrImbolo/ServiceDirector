@@ -3,9 +3,29 @@
   "ProjectMap": {
     "46840c02-6225-4eb7-99ab-802cf469984c": {
       "ProjectGuid": "46840c02-6225-4eb7-99ab-802cf469984c",
-      "DisplayName": "GeneralService",
+      "DisplayName": "ServiceDirector",
       "ColorIndex": 0
+    },
+    "952dd15a-2d06-4a94-a1fd-45375ebef8bf": {
+      "ProjectGuid": "952dd15a-2d06-4a94-a1fd-45375ebef8bf",
+      "DisplayName": "ServiceDirectorTests",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "70f39e17-3d73-4b3f-95a6-ff4ffab57f4d": {
+      "ProjectGuid": "70f39e17-3d73-4b3f-95a6-ff4ffab57f4d",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 2
+    },
+    "28d029f9-6f4e-49dc-a98e-fdd4ddb83067": {
+      "ProjectGuid": "28d029f9-6f4e-49dc-a98e-fdd4ddb83067",
+      "DisplayName": "ServiceDirector.Benchmark",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }
