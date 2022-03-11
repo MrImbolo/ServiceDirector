@@ -27,9 +27,9 @@ namespace GeneralService
             ServiceRequest request2 = new() { Data = "This a sample director request data" };
             
             Console.WriteLine($"Request with sample data '{request2.Data}' created. Sending using service director...");
-            var response2 = await director.ExecuteAsync(service, () =>
+            var response2 = await director.ExecuteAsync(service, async (ct) =>
             {
-                return request2;
+                return await Task.FromResult(request2);
             });
 
             Console.WriteLine($"Send completed. Response is '{response2.HttpStatusCode}:{response2.Result}'");

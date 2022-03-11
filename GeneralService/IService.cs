@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GeneralService
@@ -19,14 +20,18 @@ namespace GeneralService
     }
     public interface IService
     {
-        Task<ServiceResponse> ExecuteAsync(ServiceRequest request);
+        Task<ServiceResponse> ExecuteAsync(ServiceRequest request, CancellationToken ct = default);
     }
     public class DefaultService : IService
     {
         private static Random _random = new Random();
-        public async Task<ServiceResponse> ExecuteAsync(ServiceRequest request)
+        public async Task<ServiceResponse> ExecuteAsync(
+            ServiceRequest request, 
+            CancellationToken ct = default)
         {
-            await Task.Delay(_random.Next(100, 150));
+            await Task.Delay(_random.Next(100, 150), ct);
+
+            ct.ThrowIfCancellationRequested();
 
             return new()
             {
@@ -38,9 +43,20 @@ namespace GeneralService
     }
     public class TaskCancelledExceptionService : IService
     {
-        public Task<ServiceResponse> ExecuteAsync(ServiceRequest request)
+        public Task<ServiceResponse> ExecuteAsync(
+            ServiceRequest request, 
+            CancellationToken ct = default)
         {
             throw new TaskCanceledException();
+        }
+    }
+    public class InvalidOperationExceptionService : IService
+    {
+        public Task<ServiceResponse> ExecuteAsync(
+            ServiceRequest request, 
+            CancellationToken ct = default)
+        {
+            throw new InvalidOperationException();
         }
     }
 }
