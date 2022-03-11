@@ -17,15 +17,15 @@ namespace ServiceDirectorTests
         public async Task ExecuteAsync_Ok_IsBeingExecutedOk()
         {
             // assign
-            var director = new DefaultServiceDirector();
             var service = new DefaultService();
+            var director = new DefaultServiceDirector(service);
 
             ServiceRequest request2 = new() { Data = "This a sample director request data" };
 
             Debug.WriteLine($"Request with sample data '{request2.Data}' created. Sending using service director...");
             
             // act
-            var response2 = await director.ExecuteAsync(service, async (ct) =>
+            var response2 = await director.ExecuteAsync(async (ct) =>
             {
                 return await Task.FromResult(request2);
             });
@@ -42,15 +42,15 @@ namespace ServiceDirectorTests
         public async Task ExecuteAsync_ComplexAsyncConfigure_IsBeingExecutedOk()
         {
             // assign
-            var director = new DefaultServiceDirector();
             var service = new DefaultService();
+            var director = new DefaultServiceDirector(service);
 
             ServiceRequest request2 = new() { Data = "This a sample director request data" };
 
             Debug.WriteLine($"Request with sample data '{request2.Data}' created. Sending using service director...");
 
             // act
-            var response2 = await director.ExecuteAsync(service, async (ct) =>
+            var response2 = await director.ExecuteAsync(async (ct) =>
             {
                 var res = await Task.WhenAll(
                     service.ExecuteAsync(new() { Data = "1" }, ct),
@@ -75,8 +75,8 @@ namespace ServiceDirectorTests
         public async Task ExecuteAsync_TaskCancelledByCaller_TaskCancelledExceptionThrown()
         {
             // assign
-            var director = new DefaultServiceDirector();
             var service = new DefaultService();
+            var director = new DefaultServiceDirector(service);
             using var cte = new CancellationTokenSource();
 
             cte.Cancel();
@@ -88,7 +88,7 @@ namespace ServiceDirectorTests
 
             await Assert.ThrowsAsync<TaskCanceledException>(async () =>
             {
-                await director.ExecuteAsync(service, async (ct) =>
+                await director.ExecuteAsync(async (ct) =>
                 {
                     return await Task.FromResult(request2);
                 }, cte.Token);
@@ -99,8 +99,8 @@ namespace ServiceDirectorTests
         public async Task ExecuteAsync_TaskCancelledExceptionThrown_ExceptionThrown()
         {
             // assign
-            var director = new DefaultServiceDirector();
             var service = new TaskCancelledExceptionService();
+            var director = new DefaultServiceDirector(service);
 
             ServiceRequest request2 = new() { Data = "This a sample director request data" };
 
@@ -109,7 +109,7 @@ namespace ServiceDirectorTests
 
             await Assert.ThrowsAsync<TaskCanceledException>(async () =>
             {
-                await director.ExecuteAsync(service, async (ct) =>
+                await director.ExecuteAsync(async (ct) =>
                 {
                     return await Task.FromResult(request2);
                 }, CancellationToken.None);
@@ -120,8 +120,8 @@ namespace ServiceDirectorTests
         public async Task ExecuteAsync_InvalidOperationExcecption_ExceptionThrown()
         {
             // assign
-            var director = new DefaultServiceDirector();
             var service = new InvalidOperationExceptionService();
+            var director = new DefaultServiceDirector(service);
 
             ServiceRequest request2 = new() { Data = "This a sample director request data" };
 
@@ -130,7 +130,7 @@ namespace ServiceDirectorTests
 
             await Assert.ThrowsAsync<InvalidOperationException>(async () =>
             {
-                await director.ExecuteAsync(service, async (ct) =>
+                await director.ExecuteAsync(async (ct) =>
                 {
                     return await Task.FromResult(request2);
                 }, CancellationToken.None);

@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceDirector", "ServiceD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceDirectorTests", "ServiceDirectorTests\ServiceDirectorTests.csproj", "{ACC6F57A-BCDA-41A0-BB1D-A785C235A88F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDirector.SendGrid", "ServiceDirector.SendGrid\ServiceDirector.SendGrid.csproj", "{0A36B770-3BD8-421E-BC00-BFEE1E42344D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{ACC6F57A-BCDA-41A0-BB1D-A785C235A88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC6F57A-BCDA-41A0-BB1D-A785C235A88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACC6F57A-BCDA-41A0-BB1D-A785C235A88F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A36B770-3BD8-421E-BC00-BFEE1E42344D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A36B770-3BD8-421E-BC00-BFEE1E42344D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A36B770-3BD8-421E-BC00-BFEE1E42344D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A36B770-3BD8-421E-BC00-BFEE1E42344D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
