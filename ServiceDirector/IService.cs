@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GeneralService
+namespace ServiceDirector
 {
     public class ServiceRequest
     {
@@ -29,7 +29,7 @@ namespace GeneralService
             ServiceRequest request, 
             CancellationToken ct = default)
         {
-            await Task.Delay(_random.Next(100, 150), ct);
+            await Task.Delay(1, ct);
 
             ct.ThrowIfCancellationRequested();
 

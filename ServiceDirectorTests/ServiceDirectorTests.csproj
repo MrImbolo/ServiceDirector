@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GeneralService\GeneralService.csproj" />
+    <ProjectReference Include="..\ServiceDirector\ServiceDirector.csproj" />
   </ItemGroup>
 
 </Project>

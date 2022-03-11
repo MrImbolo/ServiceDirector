@@ -1,4 +1,4 @@
-﻿using GeneralService;
+﻿using ServiceDirector;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GeneralServiceTests
+namespace ServiceDirectorTests
 {
     public class DefaultServiceDirectorTests
     {
